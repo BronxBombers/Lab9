@@ -1,0 +1,7 @@
+Dependencies for Project 'Lab9', Target 'Target 1': (DO NOT MODIFY !)
+F (.\Interrupt Serial IO Driver.s)(0x59FA5D6D)(--cpu Cortex-M0+ --pd "__EVAL SETA 1" -g --apcs=interwork -I.\RTE\_Target_1-IC:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.12.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include--pd "__UVISION_VERSION SETA 524" --pd "MKL46Z256xxx4 SETA 1"--list ".\listings\interrupt serial io driver.lst" --xref -o ".\objects\interrupt serial io driver.o" --depend ".\objects\interrupt serial io driver.d")
+I (MKL46Z4.s)(0x59D3C847)
+F (.\Start.s)(0x59D3C847)(--cpu Cortex-M0+ --pd "__EVAL SETA 1" -g --apcs=interwork -I.\RTE\_Target_1-IC:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.12.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include--pd "__UVISION_VERSION SETA 524" --pd "MKL46Z256xxx4 SETA 1"--list .\listings\start.lst --xref -o .\objects\start.o --depend .\objects\start.d)
+I (MKL46Z4.s)(0x59D3C847)
+F (.\HardFault_LCD.s)(0x59D3C847)(--cpu Cortex-M0+ --pd "__EVAL SETA 1" -g --apcs=interwork -I.\RTE\_Target_1-IC:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.12.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include--pd "__UVISION_VERSION SETA 524" --pd "MKL46Z256xxx4 SETA 1"--list .\listings\hardfault_lcd.lst --xref -o .\objects\hardfault_lcd.o --depend .\objects\hardfault_lcd.d)
+I (MKL46Z4.s)(0x59D3C847)

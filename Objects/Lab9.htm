@@ -1,0 +1,184 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html><head>
+<title>Static Call Graph - [.\Objects\Lab9.axf]</title></head>
+<body><HR>
+<H1>Static Call Graph for image .\Objects\Lab9.axf</H1><HR>
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Wed Nov 01 19:49:02 2017
+<BR><P>
+<H3>Maximum Stack Usage =          0 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
+Call chain for Maximum Stack Depth:</H3>
+
+<P>
+<H3>
+Functions with no stack information
+</H3><UL>
+ <LI><a href="#[3]">UART0_ISR</a>
+</UL>
+</UL>
+<P>
+<H3>
+Mutually Recursive functions
+</H3> <LI><a href="#[1]">Dummy_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[1]">Dummy_Handler</a><BR>
+</UL>
+<P>
+<H3>
+Function Pointers
+</H3><UL>
+ <LI><a href="#[1]">Dummy_Handler</a> from start.o(Start) referenced 44 times from interrupt serial io driver.o(RESET)
+ <LI><a href="#[2]">HardFault_Handler</a> from hardfault_lcd.o(HardFaultLCD) referenced from interrupt serial io driver.o(RESET)
+ <LI><a href="#[4]">Reset_Handler</a> from interrupt serial io driver.o(MyCode) referenced from interrupt serial io driver.o(RESET)
+ <LI><a href="#[3]">UART0_ISR</a> from interrupt serial io driver.o(MyCode) referenced from interrupt serial io driver.o(RESET)
+</UL>
+<P>
+<H3>
+Global Symbols
+</H3>
+<P><STRONG><a name="[2]"></a>HardFault_Handler</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, hardfault_lcd.o(HardFaultLCD))
+<BR><BR>[Calls]<UL><LI><a href="#[13]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_PutHex
+<LI><a href="#[12]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitLCD
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> interrupt serial io driver.o(RESET)
+</UL>
+<P><STRONG><a name="[12]"></a>InitLCD</STRONG> (Thumb, 124 bytes, Stack size 0 bytes, hardfault_lcd.o(HardFaultLCD))
+<BR><BR>[Called By]<UL><LI><a href="#[2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HardFault_Handler
+</UL>
+
+<P><STRONG><a name="[13]"></a>LCD_PutHex</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, hardfault_lcd.o(HardFaultLCD))
+<BR><BR>[Called By]<UL><LI><a href="#[2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HardFault_Handler
+</UL>
+
+<P><STRONG><a name="[14]"></a>Startup</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, start.o(Start))
+<BR><BR>[Calls]<UL><LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetClock48MHz
+<LI><a href="#[15]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemInit
+</UL>
+<BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Reset_Handler
+</UL>
+
+<P><STRONG><a name="[1]"></a>Dummy_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, start.o(Start))
+<BR><BR>[Calls]<UL><LI><a href="#[1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Dummy_Handler
+</UL>
+<BR>[Called By]<UL><LI><a href="#[1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Dummy_Handler
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> interrupt serial io driver.o(RESET)
+</UL>
+<P><STRONG><a name="[4]"></a>Reset_Handler</STRONG> (Thumb, 294 bytes, Stack size 0 bytes, interrupt serial io driver.o(MyCode))
+<BR><BR>[Calls]<UL><LI><a href="#[14]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Startup
+<LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PutChar
+<LI><a href="#[10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PrintQueue
+<LI><a href="#[f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NewLine
+<LI><a href="#[e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PutNumUB
+<LI><a href="#[d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PutNumHex
+<LI><a href="#[c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Dequeue
+<LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Enqueue
+<LI><a href="#[a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitQueue
+<LI><a href="#[8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PutString
+<LI><a href="#[6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetChar
+<LI><a href="#[5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Init_UART0_IRQ
+</UL>
+
+<P><STRONG><a name="[11]"></a>PutChar</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, interrupt serial io driver.o(MyCode))
+<BR><BR>[Calls]<UL><LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Enqueue
+</UL>
+<BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Reset_Handler
+<LI><a href="#[10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PrintQueue
+<LI><a href="#[f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NewLine
+<LI><a href="#[d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PutNumHex
+<LI><a href="#[9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PutNumU
+<LI><a href="#[8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PutString
+<LI><a href="#[7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DIVU
+</UL>
+<P>
+<H3>
+Local Symbols
+</H3>
+<P><STRONG><a name="[5]"></a>Init_UART0_IRQ</STRONG> (Thumb, 148 bytes, Stack size 0 bytes, interrupt serial io driver.o(MyCode))
+<BR><BR>[Calls]<UL><LI><a href="#[a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitQueue
+</UL>
+<BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Reset_Handler
+</UL>
+
+<P><STRONG><a name="[3]"></a>UART0_ISR</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, interrupt serial io driver.o(MyCode))
+<BR><BR>[Calls]<UL><LI><a href="#[c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Dequeue
+<LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Enqueue
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> interrupt serial io driver.o(RESET)
+</UL>
+<P><STRONG><a name="[6]"></a>GetChar</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, interrupt serial io driver.o(MyCode))
+<BR><BR>[Calls]<UL><LI><a href="#[c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Dequeue
+</UL>
+<BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Reset_Handler
+<LI><a href="#[7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DIVU
+</UL>
+
+<P><STRONG><a name="[7]"></a>DIVU</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, interrupt serial io driver.o(MyCode))
+<BR><BR>[Calls]<UL><LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PutChar
+<LI><a href="#[6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetChar
+</UL>
+<BR>[Called By]<UL><LI><a href="#[9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PutNumU
+</UL>
+
+<P><STRONG><a name="[8]"></a>PutString</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, interrupt serial io driver.o(MyCode))
+<BR><BR>[Calls]<UL><LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PutChar
+</UL>
+<BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Reset_Handler
+</UL>
+
+<P><STRONG><a name="[9]"></a>PutNumU</STRONG> (Thumb, 50 bytes, Stack size 0 bytes, interrupt serial io driver.o(MyCode))
+<BR><BR>[Calls]<UL><LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PutChar
+<LI><a href="#[7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DIVU
+</UL>
+<BR>[Called By]<UL><LI><a href="#[e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PutNumUB
+</UL>
+
+<P><STRONG><a name="[a]"></a>InitQueue</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, interrupt serial io driver.o(MyCode))
+<BR><BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Reset_Handler
+<LI><a href="#[5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Init_UART0_IRQ
+</UL>
+
+<P><STRONG><a name="[b]"></a>Enqueue</STRONG> (Thumb, 70 bytes, Stack size 0 bytes, interrupt serial io driver.o(MyCode))
+<BR><BR>[Called By]<UL><LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PutChar
+<LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Reset_Handler
+<LI><a href="#[3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART0_ISR
+</UL>
+
+<P><STRONG><a name="[c]"></a>Dequeue</STRONG> (Thumb, 68 bytes, Stack size 0 bytes, interrupt serial io driver.o(MyCode))
+<BR><BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Reset_Handler
+<LI><a href="#[6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetChar
+<LI><a href="#[3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART0_ISR
+</UL>
+
+<P><STRONG><a name="[d]"></a>PutNumHex</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, interrupt serial io driver.o(MyCode))
+<BR><BR>[Calls]<UL><LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PutChar
+</UL>
+<BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Reset_Handler
+</UL>
+
+<P><STRONG><a name="[e]"></a>PutNumUB</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, interrupt serial io driver.o(MyCode))
+<BR><BR>[Calls]<UL><LI><a href="#[9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PutNumU
+</UL>
+<BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Reset_Handler
+</UL>
+
+<P><STRONG><a name="[f]"></a>NewLine</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, interrupt serial io driver.o(MyCode))
+<BR><BR>[Calls]<UL><LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PutChar
+</UL>
+<BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Reset_Handler
+</UL>
+
+<P><STRONG><a name="[10]"></a>PrintQueue</STRONG> (Thumb, 58 bytes, Stack size 0 bytes, interrupt serial io driver.o(MyCode))
+<BR><BR>[Calls]<UL><LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PutChar
+</UL>
+<BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Reset_Handler
+</UL>
+
+<P><STRONG><a name="[15]"></a>SystemInit</STRONG> (Thumb, 54 bytes, Stack size 0 bytes, start.o(Start))
+<BR><BR>[Called By]<UL><LI><a href="#[14]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Startup
+</UL>
+
+<P><STRONG><a name="[16]"></a>SetClock48MHz</STRONG> (Thumb, 140 bytes, Stack size 0 bytes, start.o(Start))
+<BR><BR>[Called By]<UL><LI><a href="#[14]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Startup
+</UL>
+<P>
+<H3>
+Undefined Global Symbols
+</H3><HR></body></html>
