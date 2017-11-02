@@ -225,8 +225,6 @@ MainLoop    MOVS    R2,#0x44    ;R2 <- 'D'
 			BICS  	R0,R0,R7
 			MSR   	APSR,R0
             ;Prints the prompt and prepares for user input
-			LDR		R0,=Test
-			BL		PutString
             LDR     R0,=Prompt
             BL      PutString
             MOVS    R0,#0
@@ -332,6 +330,8 @@ Status      BL      NewLine     ;Generic status used for status input and after 
 Failure     LDR     R0,=FailurePrompt
             BL      PutString
             B       Status
+			
+			ENDP
 ;>>>>>   end main program code <<<<<
 
 ;>>>>>	 begin subroutine code <<<<<
@@ -424,7 +424,7 @@ Init_UART0_IRQ  		PROC		{R0-R14}
 			LDR     	R1,=NVIC_ISER_UART0_MASK
 			STR			R1,[R0,#0]
 
-
+			LDR			R0,=UART0_BASE
 ;Set UART0 baud rate—BDH before BDL
 			MOVS  		R2,#UART0_BDH_9600
 			STRB  		R2,[R0,#UART0_BDH_OFFSET]
@@ -452,7 +452,6 @@ Init_UART0_IRQ  		PROC		{R0-R14}
 			
 
 			POP	   		{R0-R3,PC}
-			BX	    	LR
 			ENDP
 
 
@@ -461,8 +460,8 @@ Init_UART0_IRQ  		PROC		{R0-R14}
 ;trasmit and receive interrupts
 ;Input: none
 
-UART0_ISR
-			PUSH	{R4-R7}
+UART0_ISR	PROC	{R0-R14}
+			PUSH	{R0-R7,LR}
 			
 			CPSID		I							;Mask Interrupts
 			LDR     	R5,=UART0_BASE				;Load UART base -> R5, stays there for entire ISR
@@ -470,7 +469,7 @@ UART0_ISR
 			LDRB		R2,[R5,#UART0_C2_OFFSET]
 			ANDS		R2,R2,R1					;Check if TxInterruptEnabled
 			BEQ			Rx							;If it isn't go to RxInterrupt check
-Wait		MOVS		R2,#UART0_S1_TDRE_MASK
+			MOVS		R2,#UART0_S1_TDRE_MASK
 			LDRB		R1,[R5,#UART0_S1_OFFSET]
 			ANDS		R1,R1,R2					;checks if TxInterrupt is present
 			BEQ			Rx						;loops in place until the interrupt
@@ -498,9 +497,9 @@ Rx			MOVS		R1,#UART0_S1_RDRF_MASK
 			
 
 
-EndISR		POP			{R4-R7}
-			CPSIE		I
-			BX			LR
+EndISR		CPSIE		I
+			POP			{R0-R7,PC}
+			ENDP
 			
 			
 ;Title: PutChar Subroutine
@@ -509,7 +508,7 @@ EndISR		POP			{R4-R7}
 ;Output: No outputs to registers, but output to terminal
 ;Register Modification List: R0, stores value into UART data register
 PutChar     PROC		{R0-R14}
-			PUSH		{R1-R3,LR}
+			PUSH		{R0-R3,LR}
 			LDR			R1,=TxRecord
 
 LoopPutC	CPSID		I
@@ -520,8 +519,7 @@ LoopPutC	CPSID		I
 			MOVS		R1,#UART0_C2_TI_RI
 			LDR			R0,=UART0_BASE
 			STRB		R1,[R0,#UART0_C2_OFFSET]
-			POP			{R1-R3,PC}
-			BX			LR
+			POP			{R0-R3,PC}
 			ENDP
 
 
@@ -531,7 +529,7 @@ LoopPutC	CPSID		I
 ;Output: ASCII value of input character
 ;Register Modification List: R0 -> ASCII value
 GetChar		PROC		{R1-R14}
-			PUSH		{R1-R3}
+			PUSH		{R1-R3,LR}
 			LDR			R1,=RxRecord
 	
 LoopGetC    CPSID		I
@@ -539,8 +537,7 @@ LoopGetC    CPSID		I
 			CPSIE		I
 			BCS			LoopGetC
 	
-			POP			{R1-R3}
-			BX			LR
+			POP			{R1-R3,PC}
 			ENDP
 
 ;DIVU SUBROUTINE
@@ -584,7 +581,7 @@ V			POP		{R2-R4}		;Returns registers R2-R3 to their original state
 ;Uses: GetChar, PutChar
 
 GetString	PROC        {R1-R14}
-            PUSH		{R2-R7, LR}
+            PUSH		{R2-R7,LR}
             
             MOVS		R3,#0			;Counter = 0
             MOVS        R6,#0x1F        ;For checking if the char is a control char
@@ -616,7 +613,6 @@ EndString
             MOVS		R5,#0x00			    ;StrPointer = 0
             STRB		R5,[R2,#0]              ;Store null termination char
             POP		    {R2-R7,PC}
-            BX		    LR
             ENDP
 
 ;Put String Subroutine
@@ -630,7 +626,7 @@ EndString
 ;  PutChar
 
 PutString	PROC        {R1-R13,LR}
-            PUSH	 	{R2,LR}		    ;Preserve Registers R2 and the LR
+            PUSH	 	{R0-R2,LR}		    ;Preserve Registers R2 and the LR
 
             MOVS		R2,R0			;Load the pointer to R2
 LoopPS		LDRB		R0,[R2,#0]			;Load the first character to R0
@@ -640,8 +636,7 @@ LoopPS		LDRB		R0,[R2,#0]			;Load the first character to R0
             ADDS		R2,#1			; Advance the pointer
             B		    LoopPS			;Branch to top of loop
 
-EndIf       POP		    {R2,PC}
-            BX		    LR
+EndIf       POP		    {R0-R2,PC}
             ENDP
 
 ;PutNumU subroutine
@@ -811,7 +806,6 @@ SucDeq		MRS   		R2,APSR
 			MSR   		APSR,R2
 			
 EndDec		POP			{R1-R7,PC}
-			BX			LR
 			ENDP
 
 
@@ -884,7 +878,6 @@ NewLine     PROC       {R0-R7}
             BL          PutChar
             
             POP         {R0,PC}
-            BX          LR
             ENDP
 
 
@@ -923,7 +916,6 @@ Wrap		LDR			R5,[R1,#BUF_STRT]
 EndPLoop    MOVS        R0,#0x3C
             BL          PutChar
             POP         {R0-R5,PC}
-            BX          LR
             ENDP
 ;>>>>>   end subroutine code <<<<<
             ALIGN

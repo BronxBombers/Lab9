@@ -572,7 +572,7 @@ ARM Macro Assembler    Page 9 KL46Z Bare Metal Assembly Startup
   352 00000100                 END
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M0+ --apcs=inter
 work --depend=.\objects\start.d -o.\objects\start.o -I.\RTE\_Target_1 -IC:\Keil
-_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.12.0\Device\Include -IC:\Keil_v5\ARM\CMSIS
+_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.13.0\Device\Include -IC:\Keil_v5\ARM\CMSIS
 \Include --predefine="__EVAL SETA 1" --predefine="__UVISION_VERSION SETA 524" -
 -predefine="MKL46Z256xxx4 SETA 1" --list=.\listings\start.lst Start.s
 

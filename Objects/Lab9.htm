@@ -3,18 +3,11 @@
 <title>Static Call Graph - [.\Objects\Lab9.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\Lab9.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Wed Nov 01 19:49:02 2017
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Thu Nov 02 17:32:00 2017
 <BR><P>
-<H3>Maximum Stack Usage =          0 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =          0 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
 
-<P>
-<H3>
-Functions with no stack information
-</H3><UL>
- <LI><a href="#[3]">UART0_ISR</a>
-</UL>
-</UL>
 <P>
 <H3>
 Mutually Recursive functions
@@ -61,7 +54,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> interrupt serial io driver.o(RESET)
 </UL>
-<P><STRONG><a name="[4]"></a>Reset_Handler</STRONG> (Thumb, 294 bytes, Stack size 0 bytes, interrupt serial io driver.o(MyCode))
+<P><STRONG><a name="[4]"></a>Reset_Handler</STRONG> (Thumb, 288 bytes, Stack size 0 bytes, interrupt serial io driver.o(MyCode))
 <BR><BR>[Calls]<UL><LI><a href="#[14]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Startup
 <LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PutChar
 <LI><a href="#[10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PrintQueue
@@ -76,7 +69,7 @@ Global Symbols
 <LI><a href="#[5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Init_UART0_IRQ
 </UL>
 
-<P><STRONG><a name="[11]"></a>PutChar</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, interrupt serial io driver.o(MyCode))
+<P><STRONG><a name="[11]"></a>PutChar</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, interrupt serial io driver.o(MyCode))
 <BR><BR>[Calls]<UL><LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Enqueue
 </UL>
 <BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Reset_Handler
@@ -97,13 +90,13 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Reset_Handler
 </UL>
 
-<P><STRONG><a name="[3]"></a>UART0_ISR</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, interrupt serial io driver.o(MyCode))
+<P><STRONG><a name="[3]"></a>UART0_ISR</STRONG> (Thumb, 60 bytes, Stack size 0 bytes, interrupt serial io driver.o(MyCode))
 <BR><BR>[Calls]<UL><LI><a href="#[c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Dequeue
 <LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Enqueue
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> interrupt serial io driver.o(RESET)
 </UL>
-<P><STRONG><a name="[6]"></a>GetChar</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, interrupt serial io driver.o(MyCode))
+<P><STRONG><a name="[6]"></a>GetChar</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, interrupt serial io driver.o(MyCode))
 <BR><BR>[Calls]<UL><LI><a href="#[c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Dequeue
 </UL>
 <BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Reset_Handler
@@ -117,7 +110,7 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PutNumU
 </UL>
 
-<P><STRONG><a name="[8]"></a>PutString</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, interrupt serial io driver.o(MyCode))
+<P><STRONG><a name="[8]"></a>PutString</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, interrupt serial io driver.o(MyCode))
 <BR><BR>[Calls]<UL><LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PutChar
 </UL>
 <BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Reset_Handler
@@ -141,7 +134,7 @@ Local Symbols
 <LI><a href="#[3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART0_ISR
 </UL>
 
-<P><STRONG><a name="[c]"></a>Dequeue</STRONG> (Thumb, 68 bytes, Stack size 0 bytes, interrupt serial io driver.o(MyCode))
+<P><STRONG><a name="[c]"></a>Dequeue</STRONG> (Thumb, 66 bytes, Stack size 0 bytes, interrupt serial io driver.o(MyCode))
 <BR><BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Reset_Handler
 <LI><a href="#[6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetChar
 <LI><a href="#[3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART0_ISR
@@ -159,13 +152,13 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Reset_Handler
 </UL>
 
-<P><STRONG><a name="[f]"></a>NewLine</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, interrupt serial io driver.o(MyCode))
+<P><STRONG><a name="[f]"></a>NewLine</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, interrupt serial io driver.o(MyCode))
 <BR><BR>[Calls]<UL><LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PutChar
 </UL>
 <BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Reset_Handler
 </UL>
 
-<P><STRONG><a name="[10]"></a>PrintQueue</STRONG> (Thumb, 58 bytes, Stack size 0 bytes, interrupt serial io driver.o(MyCode))
+<P><STRONG><a name="[10]"></a>PrintQueue</STRONG> (Thumb, 56 bytes, Stack size 0 bytes, interrupt serial io driver.o(MyCode))
 <BR><BR>[Calls]<UL><LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PutChar
 </UL>
 <BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Reset_Handler
