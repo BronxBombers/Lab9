@@ -16,7 +16,7 @@
         <TargetCommonOption>
           <Device>MKL46Z256xxx4</Device>
           <Vendor>NXP</Vendor>
-          <PackID>Keil.Kinetis_KLxx_DFP.1.13.0</PackID>
+          <PackID>Keil.Kinetis_KLxx_DFP.1.12.0</PackID>
           <PackURL>http://www.keil.com/pack/</PackURL>
           <Cpu>IRAM(0x1FFFE000,0x00008000) IROM(0x00000000,0x00040000) CPUTYPE("Cortex-M0+") CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>

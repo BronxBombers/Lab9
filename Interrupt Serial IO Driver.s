@@ -210,7 +210,7 @@ main
 ;>>>>> begin main program code <<<<<
 			LDR     R0,=QBuffer     ;Load inputs for Queue Initialization
             LDR     R1,=QRecord     ;R0 = Buffer pointer, R1 = Record Pointer, R2 = Buffer Size
-            MOVS    R2,#Q_BUF_SZ
+            MOVS    R2,#4
             BL      InitQueue       ;Initialize an Empty Queue with a size of 4 Bytes
             ;Initialize Command Characters
 MainLoop    MOVS    R2,#0x44    ;R2 <- 'D'
@@ -485,7 +485,7 @@ UART0_ISR	PROC	{R0-R14}
 			;Disables the Trasmit interrupt
 DisableTx	MOVS		R0,#UART0_C2_T_RI
 			STRB		R0,[R5,#UART0_C2_OFFSET]
-			B			EndISR
+			
 			
 Rx			MOVS		R1,#UART0_S1_RDRF_MASK
 			LDRB		R2,[R5,#UART0_S1_OFFSET]
@@ -509,16 +509,16 @@ EndISR		CPSIE		I
 ;Register Modification List: R0, stores value into UART data register
 PutChar     PROC		{R0-R14}
 			PUSH		{R0-R3,LR}
-			LDR			R1,=TxRecord
+			LDR			R1,=TxRecord		;Loads the transmit queue record
 
 LoopPutC	CPSID		I
-			BL			Enqueue
+			BL			Enqueue				;Masks interrupts and loops until a character is gotten
 			CPSIE		I
 			BCS			LoopPutC
 			
 			MOVS		R1,#UART0_C2_TI_RI
 			LDR			R0,=UART0_BASE
-			STRB		R1,[R0,#UART0_C2_OFFSET]
+			STRB		R1,[R0,#UART0_C2_OFFSET]	;Stores the character to the UART C2 register
 			POP			{R0-R3,PC}
 			ENDP
 
@@ -530,10 +530,10 @@ LoopPutC	CPSID		I
 ;Register Modification List: R0 -> ASCII value
 GetChar		PROC		{R1-R14}
 			PUSH		{R1-R3,LR}
-			LDR			R1,=RxRecord
+			LDR			R1,=RxRecord		;Loads the Receive queue 
 	
 LoopGetC    CPSID		I
-			BL			Dequeue
+			BL			Dequeue				;Masks Interrupts and loops until a character is dequeued from the Receive queue
 			CPSIE		I
 			BCS			LoopGetC
 	
@@ -870,14 +870,15 @@ PutNumUB	PROC		{R0-R14}
 ;Registers modified: PC
 
 NewLine     PROC       {R0-R7}
-            PUSH        {R0,LR}
-            
+            PUSH        {R0-R1,LR}
+            MRS			R1,APSR		;was changing c flag for some reason
             MOVS        R0,#0x0D    ;R0 <- Carriage Return
             BL          PutChar
             MOVS        R0,#0x0A    ;R0 <- Newline
             BL          PutChar
+			MSR			APSR,R1
             
-            POP         {R0,PC}
+            POP         {R0-R1,PC}
             ENDP
 
 
@@ -1031,7 +1032,7 @@ RxRecord   SPACE  Q_REC_SZ
 			ALIGN
 QBuffer	   SPACE  4	
 			ALIGN
-QRecord	   SPACE  18		
+QRecord	   SPACE  Q_REC_SZ		
 			ALIGN
 Temp       SPACE  2
 			ALIGN

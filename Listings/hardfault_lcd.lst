@@ -706,7 +706,7 @@ LCD_SEG_G)
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M0+ --apcs=inter
 work --depend=.\objects\hardfault_lcd.d -o.\objects\hardfault_lcd.o -I.\RTE\_Ta
-rget_1 -IC:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.13.0\Device\Include -IC:\K
+rget_1 -IC:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.12.0\Device\Include -IC:\K
 eil_v5\ARM\CMSIS\Include --predefine="__EVAL SETA 1" --predefine="__UVISION_VER
 SION SETA 524" --predefine="MKL46Z256xxx4 SETA 1" --list=.\listings\hardfault_l
 cd.lst HardFault_LCD.s
